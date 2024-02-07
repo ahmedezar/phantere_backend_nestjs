@@ -13,7 +13,7 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
-
+import { UpdateUserDto } from './dto/update-user.dto';
 @Injectable()
 export class AuthService {
   constructor(
@@ -59,7 +59,7 @@ export class AuthService {
     return { token };
   }
 
-  async getUserById(id: number): Promise<any> {
+  async getUserById(id: string): Promise<any> {
     // Your logic to fetch the user by ID from the database or any other source
     // For example, you might have a UserRepository or a database service to handle this
     const user = await this.userModel.findById(id);
@@ -90,5 +90,12 @@ export class AuthService {
       // Handle any other errors
       throw new InternalServerErrorException('Error deleting user');
     }
+  }
+
+  async updateUserById(id: string, updateUserDto: UpdateUserDto): Promise<any> {
+    // Your logic to update the user by ID
+    const user = await this.userModel.findById(id);
+    return user;
+    // Use the provided DTO fields to update the user's information
   }
 }

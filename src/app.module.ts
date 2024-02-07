@@ -4,7 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { ProfileModule } from './profile/profile.module';
 import * as dotenv from 'dotenv';
 
 @Module({
@@ -15,7 +14,6 @@ import * as dotenv from 'dotenv';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     AuthModule,
-    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
